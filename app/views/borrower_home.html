@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <a href="/logout">Logout</a>
+    <h3>Name: {{ profile_info['first_name'] }} {{ profile_info['last_name'] }}</h3>
+    <h3>Amount Needed: ${{ profile_info['need'] }}</h3>
+    <h3>Amount Raised: ${{ profile_info['funds_bal'] }}</h3>
+    <div>
+      <h4>List of lenders who have lent to you</h4>
+      <table border="1">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Amount</th>
+        </tr>
+        {% for lender in borrower_loans %}
+          <tr>
+            <td>{{ lender['first_name'] }} {{ lender['last_name'] }}</td>
+            <td>{{ lender['email'] }}</td>
+            <td>{{ lender['loans'] }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>

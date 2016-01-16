@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <h1>Register</h1>
+    {% with msgs = get_flashed_messages(with_categories=true) %}
+      {% if msgs %}
+        {% for msg in msgs %}
+          {{ msg }}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <h2>Register as a Lender</h2>
+    <form method='post' action='/lenders'>
+      First Name: <input type="text" name="first_name"><br>
+      Last Name: <input type="text" name="last_name"><br>
+      Email: <input type="text" name="email"><br>
+      Password: <input type="password" name="password"><br>
+      Confirm PW: <input type="password" name="pw_confirm"><br>
+      Select Starting Balance:<select name="start_bal">
+        <option value="1000">$1000</option>
+        <option value="2000">$2000</option>
+        <option value="3000">$3000</option>
+        <option value="4000">$4000</option>
+        <option value="5000">$5000</option>
+      </select>
+      <input type="submit" value="Register">
+    </form>
+    <a href="/signin">Already a member? Click here to login</a>
+    <h2>Register as a Borrower</h2>
+    <form method='post' action='/borrowers'>
+      First Name: <input type="text" name="first_name"><br>
+      Last Name: <input type="text" name="last_name"><br>
+      Email: <input type="text" name="email"><br>
+      Password: <input type="password" name="password"><br>
+      Confirm PW: <input type="password" name="pw_confirm"><br>
+      Need $ For: <input type="text" name="title"><br>
+      Description: <input type="textarea" name="description"><br>
+      Total Needed: <select name="need">
+        <option value="100">$100</option>
+        <option value="500">$500</option>
+        <option value="1000">$1000</option>
+        <option value="2500">$2500</option>
+        <option value="5000">$5000</option>
+      </select>
+      <input type="submit" value="Register">
+    </form>
+    <a href="/signin">Already a member? Click here to login</a>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <a href="/logout">Logout</a>
+    <h3>Name: {{ profile_info['first_name'] }} {{ profile_info['last_name'] }}</h3>
+    <h3>Account Balance: {{ profile_info['account_bal'] }}</h3>
+    <div>
+      <h4>List of all borrowers in need</h4>
+      <table border="1">
+        <tr>
+          <th>Name</th>
+          <th>Need for</th>
+          <th>Description</th>
+          <th>Amount Needed</th>
+          <th>Amount Raised</th>
+          <th>Action</th>
+        </tr>
+        {% for borrower in borrowers_need %}
+        <tr>
+          <td>{{ borrower['first_name'] }} {{ borrower['last_name'] }}</td>
+          <td>{{ borrower['title'] }}</td>
+          <td>{{ borrower['description'] }}</td>
+          <td>{{ borrower['need'] }}</td>
+          <td>{{ borrower['funds_bal'] }}</td>
+          <td>
+            <form method="post" action="/lend/{{ borrower['id'] }}">
+              <select name="loan_amount">
+                <option value="25">$25</option>
+                <option value="100">$100</option>
+                <option value="500">$500</option>
+                <option value="1000">$1000</option>
+              </select>
+              <input type="submit" value="Lend">
+            </form>
+        </tr>
+        {% endfor %}
+      </table>
+      <h4>List of all borrowers you've helped</h4>
+      <table border="1">
+        <tr>
+          <th>Name</th>
+          <th>Need for</th>
+          <th>Description</th>
+          <th>Amount Needed</th>
+          <th>Amount Raised</th>
+          <th>Amount Lent</th>
+        </tr>
+        {% for borrower in my_borrowers %}
+        <tr>
+          <td>{{ borrower['name'] }}</td>
+          <td>{{ borrower['title'] }}</td>
+          <td>{{ borrower['description'] }}</td>
+          <td>{{ borrower['need'] }}</td>
+          <td>{{ borrower['funds_bal'] }}</td>
+          <td>{{ borrower['amount_lent'] }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>
